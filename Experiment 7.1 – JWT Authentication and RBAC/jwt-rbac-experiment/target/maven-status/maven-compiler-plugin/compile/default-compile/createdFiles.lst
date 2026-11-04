@@ -1,0 +1,8 @@
+com\example\jwtrbac\controller\ApiController.class
+com\example\jwtrbac\JwtRbacApplication.class
+com\example\jwtrbac\security\AuthenticationManagerConfig.class
+com\example\jwtrbac\auth\LoginRequest.class
+com\example\jwtrbac\security\JwtAuthenticationFilter.class
+com\example\jwtrbac\security\SecurityConfig.class
+com\example\jwtrbac\auth\AuthController.class
+com\example\jwtrbac\security\JwtService.class

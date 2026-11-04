@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JWT Security Lab | Md Zahir Abbas</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- ================= LOGIN PAGE ================= -->
+
+    <section id="loginPage" class="login-page">
+
+        <div class="login-background">
+            <div class="glow glow-one"></div>
+            <div class="glow glow-two"></div>
+            <div class="grid"></div>
+        </div>
+
+        <div class="login-container">
+
+            <!-- Left Side -->
+            <div class="login-info">
+
+                <div class="brand">
+                    <div class="brand-icon">🔐</div>
+
+                    <div>
+                        <h1>JWT Security Lab</h1>
+                        <p>Spring Security • JWT • RBAC</p>
+                    </div>
+                </div>
+
+                <div class="hero-text">
+                    <span class="small-label">SECURE ACCESS SYSTEM</span>
+
+                    <h2>
+                        Authentication made
+                        <span>secure.</span>
+                    </h2>
+
+                    <p>
+                        Experience a complete JWT authentication and
+                        role-based access control system powered by
+                        Spring Boot and Spring Security.
+                    </p>
+                </div>
+
+                <div class="security-flow">
+
+                    <div class="flow-item">
+                        <div class="flow-icon">01</div>
+                        <div>
+                            <strong>Login</strong>
+                            <small>Verify credentials</small>
+                        </div>
+                    </div>
+
+                    <div class="flow-line"></div>
+
+                    <div class="flow-item">
+                        <div class="flow-icon">02</div>
+                        <div>
+                            <strong>JWT</strong>
+                            <small>Generate token</small>
+                        </div>
+                    </div>
+
+                    <div class="flow-line"></div>
+
+                    <div class="flow-item">
+                        <div class="flow-icon">03</div>
+                        <div>
+                            <strong>RBAC</strong>
+                            <small>Check permissions</small>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Login Card -->
+            <div class="login-card">
+
+                <div class="card-top">
+
+                    <div>
+                        <span class="card-label">WELCOME BACK</span>
+
+                        <h3>Sign in</h3>
+
+                        <p>
+                            Enter your credentials to access the
+                            security dashboard.
+                        </p>
+                    </div>
+
+                    <div class="secure-badge">
+                        <span class="status-dot"></span>
+                        SECURE
+                    </div>
+
+                </div>
+
+
+                <!-- Login Form -->
+
+                <form id="loginForm">
+
+                    <div class="input-group">
+
+                        <label for="username">
+                            Username
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">👤</span>
+
+                            <input
+                                type="text"
+                                id="username"
+                                placeholder="Enter username"
+                                autocomplete="username"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">🔑</span>
+
+                            <input
+                                type="password"
+                                id="password"
+                                placeholder="Enter password"
+                                autocomplete="current-password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                id="togglePassword"
+                                class="password-toggle"
+                            >
+                                👁
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        id="loginButton"
+                        class="login-button"
+                    >
+
+                        <span id="loginButtonText">
+                            Login Securely
+                        </span>
+
+                        <span class="button-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+                </form>
+
+
+                <!-- Demo Login -->
+
+                <div class="demo-section">
+
+                    <div class="divider">
+                        <span>QUICK DEMO LOGIN</span>
+                    </div>
+
+                    <div class="demo-buttons">
+
+                        <button
+                            type="button"
+                            id="adminDemo"
+                            class="demo-button admin-demo"
+                        >
+                            <span class="demo-icon">🛡️</span>
+
+                            <span>
+                                <strong>Admin</strong>
+                                <small>admin / admin123</small>
+                            </span>
+                        </button>
+
+
+                        <button
+                            type="button"
+                            id="userDemo"
+                            class="demo-button user-demo"
+                        >
+                            <span class="demo-icon">👤</span>
+
+                            <span>
+                                <strong>User</strong>
+                                <small>user / user123</small>
+                            </span>
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Error Message -->
+
+                <div
+                    id="loginMessage"
+                    class="message hidden"
+                    role="alert"
+                ></div>
+
+
+                <div class="student-info">
+
+                    <div class="student-avatar">
+                        ZA
+                    </div>
+
+                    <div>
+                        <strong>Md Zahir Abbas</strong>
+                        <span>UID: 24BAI70133</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= DASHBOARD ================= -->
+
+    <section id="dashboardPage" class="dashboard-page hidden">
+
+        <!-- Sidebar -->
+
+        <aside class="sidebar">
+
+            <div class="sidebar-brand">
+
+                <div class="brand-icon small">
+                    🔐
+                </div>
+
+                <div>
+                    <strong>JWT LAB</strong>
+                    <span>Security Console</span>
+                </div>
+
+            </div>
+
+
+            <div class="sidebar-profile">
+
+                <div class="profile-avatar">
+                    ZA
+                </div>
+
+                <div class="profile-details">
+
+                    <strong id="sidebarName">
+                        Md Zahir Abbas
+                    </strong>
+
+                    <span id="sidebarRole">
+                        AUTHENTICATED USER
+                    </span>
+
+                </div>
+
+                <span class="online-dot"></span>
+
+            </div>
+
+
+            <nav class="sidebar-nav">
+
+                <span class="nav-title">
+                    MAIN MENU
+                </span>
+
+                <button
+                    type="button"
+                    class="nav-item active"
+                    data-section="overview"
+                >
+                    <span>◈</span>
+                    Overview
+                </button>
+
+                <button
+                    type="button"
+                    class="nav-item"
+                    data-section="api"
+                >
+                    <span>⚡</span>
+                    API Testing
+                </button>
+
+                <button
+                    type="button"
+                    class="nav-item"
+                    data-section="security"
+                >
+                    <span>🛡</span>
+                    Security
+                </button>
+
+                <button
+                    type="button"
+                    class="nav-item"
+                    data-section="token"
+                >
+                    <span>🔑</span>
+                    JWT Token
+                </button>
+
+            </nav>
+
+
+            <div class="sidebar-bottom">
+
+                <div class="sidebar-project">
+
+                    <span class="project-icon">
+                        ◆
+                    </span>
+
+                    <div>
+                        <strong>Experiment 2.3.1</strong>
+                        <small>JWT + Spring Security</small>
+                    </div>
+
+                </div>
+
+                <button
+                    type="button"
+                    id="logoutButton"
+                    class="logout-button"
+                >
+                    <span>↪</span>
+                    Logout
+                </button>
+
+            </div>
+
+        </aside>
+
+
+        <!-- Main Dashboard -->
+
+        <main class="dashboard-main">
+
+            <!-- Topbar -->
+
+            <header class="topbar">
+
+                <div>
+
+                    <span class="breadcrumb">
+                        SECURITY LAB / DASHBOARD
+                    </span>
+
+                    <h2 id="pageTitle">
+                        Security Overview
+                    </h2>
+
+                </div>
+
+
+                <div class="topbar-right">
+
+                    <div class="live-status">
+                        <span class="online-dot"></span>
+                        System Online
+                    </div>
+
+                    <div class="top-avatar">
+                        ZA
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- ================= OVERVIEW ================= -->
+
+            <section
+                id="overviewSection"
+                class="dashboard-section"
+            >
+
+                <div class="welcome-banner">
+
+                    <div>
+
+                        <span class="small-label">
+                            AUTHENTICATION SUCCESSFUL
+                        </span>
+
+                        <h1>
+                            Welcome,
+                            <span id="welcomeName">
+                                Md Zahir Abbas
+                            </span>
+                            👋
+                        </h1>
+
+                        <p>
+                            Your identity has been verified and your
+                            JWT authentication session is active.
+                        </p>
+
+                    </div>
+
+                    <div class="welcome-shield">
+                        🛡️
+                    </div>
+
+                </div>
+
+
+                <!-- Stats -->
+
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon blue">
+                            👤
+                        </div>
+
+                        <div>
+                            <span>USER ID</span>
+
+                            <strong>
+                                24BAI70133
+                            </strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon purple">
+                            🛡️
+                        </div>
+
+                        <div>
+                            <span>ROLE</span>
+
+                            <strong id="roleValue">
+                                ADMIN
+                            </strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon green">
+                            ✓
+                        </div>
+
+                        <div>
+                            <span>AUTH STATUS</span>
+
+                            <strong class="success-text">
+                                VERIFIED
+                            </strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon orange">
+                            🔑
+                        </div>
+
+                        <div>
+                            <span>TOKEN</span>
+
+                            <strong>
+                                ACTIVE
+                            </strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- API Access -->
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="small-label">
+                            ENDPOINT CONTROL
+                        </span>
+
+                        <h2>
+                            API Access
+                        </h2>
+                    </div>
+
+                    <span class="api-count">
+                        3 ENDPOINTS
+                    </span>
+
+                </div>
+
+
+                <div class="api-grid">
+
+                    <button
+                        type="button"
+                        class="api-card"
+                        data-api="/api/user"
+                        data-name="User API"
+                    >
+
+                        <div class="api-card-top">
+
+                            <div class="api-icon user">
+                                👤
+                            </div>
+
+                            <span class="method get">
+                                GET
+                            </span>
+
+                        </div>
+
+                        <h3>
+                            User API
+                        </h3>
+
+                        <p>
+                            Accessible to USER and ADMIN roles.
+                        </p>
+
+                        <div class="api-footer">
+                            <span>/api/user</span>
+                            <span>→</span>
+                        </div>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="api-card"
+                        data-api="/api/admin"
+                        data-name="Admin API"
+                    >
+
+                        <div class="api-card-top">
+
+                            <div class="api-icon admin">
+                                🛡️
+                            </div>
+
+                            <span class="method get">
+                                GET
+                            </span>
+
+                        </div>
+
+                        <h3>
+                            Admin API
+                        </h3>
+
+                        <p>
+                            Restricted to ADMIN role only.
+                        </p>
+
+                        <div class="api-footer">
+                            <span>/api/admin</span>
+                            <span>→</span>
+                        </div>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="api-card"
+                        data-api="/api/public"
+                        data-name="Public API"
+                    >
+
+                        <div class="api-card-top">
+
+                            <div class="api-icon public">
+                                🌐
+                            </div>
+
+                            <span class="method get">
+                                GET
+                            </span>
+
+                        </div>
+
+                        <h3>
+                            Public API
+                        </h3>
+
+                        <p>
+                            Public endpoint available without role.
+                        </p>
+
+                        <div class="api-footer">
+                            <span>/api/public</span>
+                            <span>→</span>
+                        </div>
+
+                    </button>
+
+                </div>
+
+
+                <!-- Security Flow -->
+
+                <div class="section-heading flow-heading">
+
+                    <div>
+                        <span class="small-label">
+                            HOW IT WORKS
+                        </span>
+
+                        <h2>
+                            Authentication Flow
+                        </h2>
+                    </div>
+
+                </div>
+
+
+                <div class="dashboard-flow">
+
+                    <div class="flow-step active-flow">
+                        <span>01</span>
+                        <strong>Login</strong>
+                        <small>Credentials</small>
+                    </div>
+
+                    <div class="flow-arrow">→</div>
+
+                    <div class="flow-step">
+                        <span>02</span>
+                        <strong>JWT</strong>
+                        <small>Token generated</small>
+                    </div>
+
+                    <div class="flow-arrow">→</div>
+
+                    <div class="flow-step">
+                        <span>03</span>
+                        <strong>Bearer</strong>
+                        <small>Authorization header</small>
+                    </div>
+
+                    <div class="flow-arrow">→</div>
+
+                    <div class="flow-step">
+                        <span>04</span>
+                        <strong>Filter</strong>
+                        <small>JWT validation</small>
+                    </div>
+
+                    <div class="flow-arrow">→</div>
+
+                    <div class="flow-step">
+                        <span>05</span>
+                        <strong>RBAC</strong>
+                        <small>Role checking</small>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ================= API SECTION ================= -->
+
+            <section
+                id="apiSection"
+                class="dashboard-section hidden"
+            >
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="small-label">
+                            LIVE BACKEND TEST
+                        </span>
+
+                        <h2>
+                            API Testing
+                        </h2>
+
+                        <p>
+                            Send authenticated requests directly
+                            to your Spring Boot backend.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="api-test-layout">
+
+                    <div class="api-test-panel">
+
+                        <div class="test-header">
+                            <span class="method get">GET</span>
+
+                            <strong id="selectedEndpoint">
+                                Select an endpoint
+                            </strong>
+                        </div>
+
+
+                        <div class="endpoint-list">
+
+                            <button
+                                type="button"
+                                class="endpoint-button"
+                                data-api="/api/user"
+                                data-name="User API"
+                            >
+                                <span>👤</span>
+                                <span>
+                                    <strong>User API</strong>
+                                    <small>/api/user</small>
+                                </span>
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="endpoint-button"
+                                data-api="/api/admin"
+                                data-name="Admin API"
+                            >
+                                <span>🛡️</span>
+                                <span>
+                                    <strong>Admin API</strong>
+                                    <small>/api/admin</small>
+                                </span>
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="endpoint-button"
+                                data-api="/api/public"
+                                data-name="Public API"
+                            >
+                                <span>🌐</span>
+                                <span>
+                                    <strong>Public API</strong>
+                                    <small>/api/public</small>
+                                </span>
+                            </button>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            id="sendApiButton"
+                            class="send-api-button"
+                        >
+                            Send Request →
+                        </button>
+
+                    </div>
+
+
+                    <div class="response-panel">
+
+                        <div class="response-header">
+
+                            <span>
+                                RESPONSE
+                            </span>
+
+                            <span
+                                id="responseStatus"
+                                class="response-status"
+                            >
+                                WAITING
+                            </span>
+
+                        </div>
+
+                        <pre id="apiResponse">Select an endpoint and click "Send Request".</pre>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ================= SECURITY SECTION ================= -->
+
+            <section
+                id="securitySection"
+                class="dashboard-section hidden"
+            >
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="small-label">
+                            SPRING SECURITY
+                        </span>
+
+                        <h2>
+                            Security & RBAC
+                        </h2>
+
+                        <p>
+                            Your current authentication and
+                            authorization information.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="security-grid">
+
+                    <div class="security-card">
+
+                        <div class="security-card-icon">
+                            🔐
+                        </div>
+
+                        <h3>
+                            Authentication
+                        </h3>
+
+                        <p>
+                            Your identity is verified using
+                            Spring Security AuthenticationManager.
+                        </p>
+
+                        <span class="security-status">
+                            ✓ AUTHENTICATED
+                        </span>
+
+                    </div>
+
+
+                    <div class="security-card">
+
+                        <div class="security-card-icon">
+                            🛡️
+                        </div>
+
+                        <h3>
+                            Authorization
+                        </h3>
+
+                        <p>
+                            Access to protected resources is
+                            controlled according to your role.
+                        </p>
+
+                        <span class="security-status">
+                            ✓ AUTHORIZED
+                        </span>
+
+                    </div>
+
+
+                    <div class="security-card">
+
+                        <div class="security-card-icon">
+                            👑
+                        </div>
+
+                        <h3>
+                            Role Based Access
+                        </h3>
+
+                        <p>
+                            Your current role determines which
+                            APIs you can access.
+                        </p>
+
+                        <span
+                            id="securityRole"
+                            class="security-status"
+                        >
+                            ROLE_ADMIN
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="permission-table">
+
+                    <div class="permission-row header">
+
+                        <span>Endpoint</span>
+                        <span>USER</span>
+                        <span>ADMIN</span>
+
+                    </div>
+
+
+                    <div class="permission-row">
+
+                        <span>/api/user</span>
+
+                        <span class="allowed">
+                            ✓ ALLOWED
+                        </span>
+
+                        <span class="allowed">
+                            ✓ ALLOWED
+                        </span>
+
+                    </div>
+
+
+                    <div class="permission-row">
+
+                        <span>/api/admin</span>
+
+                        <span class="denied">
+                            ✕ DENIED
+                        </span>
+
+                        <span class="allowed">
+                            ✓ ALLOWED
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ================= TOKEN SECTION ================= -->
+
+            <section
+                id="tokenSection"
+                class="dashboard-section hidden"
+            >
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="small-label">
+                            JSON WEB TOKEN
+                        </span>
+
+                        <h2>
+                            JWT Token
+                        </h2>
+
+                        <p>
+                            Your current authentication token.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="token-card">
+
+                    <div class="token-header">
+
+                        <div>
+
+                            <span class="token-label">
+                                TOKEN STATUS
+                            </span>
+
+                            <h3>
+                                🔑 Active JWT
+                            </h3>
+
+                        </div>
+
+                        <span class="token-active">
+                            ACTIVE
+                        </span>
+
+                    </div>
+
+
+                    <div class="token-preview">
+
+                        <span>
+                            HEADER
+                        </span>
+
+                        <span>
+                            PAYLOAD
+                        </span>
+
+                        <span>
+                            SIGNATURE
+                        </span>
+
+                    </div>
+
+
+                    <div class="token-box">
+
+                        <code id="tokenDisplay">
+                            JWT token will appear here after login.
+                        </code>
+
+                    </div>
+
+
+                    <div class="token-info">
+
+                        <div>
+                            <span>Username</span>
+                            <strong id="tokenUsername">-</strong>
+                        </div>
+
+                        <div>
+                            <span>Role</span>
+                            <strong id="tokenRole">-</strong>
+                        </div>
+
+                        <div>
+                            <span>Algorithm</span>
+                            <strong id="tokenAlgorithm">-</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ================= API RESULT MODAL ================= -->
+
+            <div
+                id="apiModal"
+                class="modal hidden"
+            >
+
+                <div class="modal-card">
+
+                    <button
+                        type="button"
+                        id="closeModal"
+                        class="close-modal"
+                    >
+                        ×
+                    </button>
+
+                    <div
+                        id="modalIcon"
+                        class="modal-icon"
+                    >
+                        ✓
+                    </div>
+
+                    <h2 id="modalTitle">
+                        API Response
+                    </h2>
+
+                    <p id="modalMessage">
+                        Request completed.
+                    </p>
+
+                    <div class="modal-response">
+
+                        <span id="modalStatus">
+                            HTTP 200
+                        </span>
+
+                        <pre id="modalBody"></pre>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        id="modalOk"
+                        class="modal-button"
+                    >
+                        Continue
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Toast -->
+
+            <div
+                id="toast"
+                class="toast hidden"
+            >
+                <span id="toastIcon">✓</span>
+
+                <div>
+                    <strong id="toastTitle">
+                        Success
+                    </strong>
+
+                    <p id="toastMessage">
+                        Request completed.
+                    </p>
+                </div>
+
+            </div>
+
+        </main>
+
+    </section>
+
+</div>
+
+
+<script src="app.js"></script>
+
+</body>
+</html>

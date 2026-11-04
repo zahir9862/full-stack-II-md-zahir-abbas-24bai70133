@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AES & Token Security Lab</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="orb orb-a"></div>
+<div class="orb orb-b"></div>
+
+<header class="topbar">
+    <div class="brand">
+        <div class="brand-icon">🔐</div>
+        <div>
+            <strong>AES & Token Security Lab</strong>
+            <span>Experiment 2.3.2</span>
+        </div>
+    </div>
+    <div class="student">
+        <strong>Md Zahir Abbas</strong>
+        <span>UID: 24BAI70133</span>
+    </div>
+</header>
+
+<main>
+    <section class="hero">
+        <div>
+            <div class="eyebrow">SPRING BOOT • AES-GCM • TOKEN SECURITY</div>
+            <h1>Secure credentials.<br><em>Rotate tokens.</em></h1>
+            <p>Interactive demonstration of AES-256-GCM encryption, secure credential storage, access tokens and refresh-token rotation.</p>
+            <div class="flow">
+                <div><b>01</b><span>AES-GCM<br><small>Encrypt secrets</small></span></div>
+                <div><b>02</b><span>Access Token<br><small>Short-lived API access</small></span></div>
+                <div><b>03</b><span>Refresh Token<br><small>Rotate securely</small></span></div>
+            </div>
+        </div>
+
+        <div class="card login-card">
+            <div class="status"><span></span> SECURE LAB</div>
+            <h2>Sign in</h2>
+            <p class="muted">Use the demo account to generate an access + refresh token pair.</p>
+
+            <label>Username</label>
+            <input id="username" value="admin" autocomplete="username">
+
+            <label>Password</label>
+            <input id="password" type="password" value="admin123" autocomplete="current-password">
+
+            <button id="loginBtn">Generate Tokens →</button>
+
+            <div class="demo">
+                <button class="demo-btn" data-u="admin" data-p="admin123">ADMIN<br><small>admin / admin123</small></button>
+                <button class="demo-btn" data-u="user" data-p="user123">USER<br><small>user / user123</small></button>
+            </div>
+
+            <div id="loginMsg" class="message"></div>
+        </div>
+    </section>
+
+    <section id="dashboard" class="dashboard hidden">
+        <div class="dashboard-head">
+            <div>
+                <div class="eyebrow">LIVE SECURITY DASHBOARD</div>
+                <h2>Token Security Overview</h2>
+            </div>
+            <button id="logoutBtn" class="secondary">Logout</button>
+        </div>
+
+        <div class="stats">
+            <div class="stat card"><span>ACCESS TOKEN</span><strong id="accessStatus">READY</strong><small>15-minute lifetime</small></div>
+            <div class="stat card"><span>REFRESH TOKEN</span><strong>ROTATING</strong><small>7-day lifetime</small></div>
+            <div class="stat card"><span>ENCRYPTION</span><strong>AES-256-GCM</strong><small>Unique 12-byte IV</small></div>
+            <div class="stat card"><span>STORAGE</span><strong>PROTECTED</strong><small>Encrypted / hashed</small></div>
+        </div>
+
+        <div class="grid">
+            <div class="card panel">
+                <div class="panel-title"><span>🔑</span><div><h3>Token Pair</h3><small>Generated at login</small></div></div>
+                <div class="token-box"><label>ACCESS TOKEN</label><code id="accessToken"></code></div>
+                <div class="token-box"><label>REFRESH TOKEN</label><code id="refreshToken"></code></div>
+                <button id="refreshBtn">Rotate Refresh Token</button>
+                <button id="revokeBtn" class="danger">Revoke Refresh Token</button>
+                <div id="tokenMsg" class="message"></div>
+            </div>
+
+            <div class="card panel">
+                <div class="panel-title"><span>🛡️</span><div><h3>API Security</h3><small>Bearer access-token testing</small></div></div>
+                <button id="protectedBtn">Call Protected API</button>
+                <button id="publicBtn" class="secondary">Call Public API</button>
+                <pre id="apiOutput">No request yet.</pre>
+            </div>
+
+            <div class="card panel">
+                <div class="panel-title"><span>🔒</span><div><h3>AES Credential Storage</h3><small>Encrypt recoverable secrets at rest</small></div></div>
+                <input id="provider" value="Demo OAuth">
+                <input id="oauthAccess" placeholder="OAuth access token" value="demo-access-secret">
+                <input id="oauthRefresh" placeholder="OAuth refresh token" value="demo-refresh-secret">
+                <button id="saveCredentialBtn">Encrypt & Store Credential</button>
+                <div id="credentialMsg" class="message"></div>
+            </div>
+
+            <div class="card panel">
+                <div class="panel-title"><span>📚</span><div><h3>Experiment Concepts</h3><small>Mapped to the PDF</small></div></div>
+                <ul class="concepts">
+                    <li><b>AES-GCM</b><span>Confidentiality + integrity</span></li>
+                    <li><b>Unique IV</b><span>New nonce for every encryption</span></li>
+                    <li><b>Access token</b><span>Short-lived API access</span></li>
+                    <li><b>Refresh rotation</b><span>Old token becomes invalid</span></li>
+                    <li><b>Token hash</b><span>Raw refresh token not stored</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>

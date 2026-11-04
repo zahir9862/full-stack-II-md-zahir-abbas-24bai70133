@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Pipeline Studio | CI Lab</title><link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-icon">↗</div><div><b>shipshape</b><small>ENGINEERING LAB</small></div></div>
+    <div class="nav-label">WORKSPACE</div>
+    <a class="nav active" href="#"><span>▦</span> Pipeline overview</a>
+    <a class="nav" href="#runs"><span>◷</span> Test runs</a>
+    <a class="nav" href="#checks"><span>✓</span> Quality checks</a>
+    <div class="side-bottom"><div class="status-dot"></div><div><b>Local environment</b><small>Spring Boot · Maven</small></div></div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><div><span class="crumb">Experiments /</span> <b>9.1 Continuous Integration</b></div><div class="avatar">CI</div></header>
+    <section class="welcome"><div><p class="eyebrow">DEVELOPER WORKSPACE</p><h1>Pipeline overview<span>.</span></h1><p class="sub">Build confidently. Test continuously. Ship with fewer surprises.</p></div><button id="runBtn" class="primary">▶ Run local checks</button></section>
+    <section class="metrics">
+      <article class="metric"><div class="metric-head">PIPELINE STATUS <span class="mini-icon">↗</span></div><strong id="pipelineState">Ready</strong><p><i class="green-dot"></i> Waiting for a run</p></article>
+      <article class="metric"><div class="metric-head">TEST SUITES <span class="mini-icon">▤</span></div><strong>03</strong><p>Unit · API · Contract plan</p></article>
+      <article class="metric"><div class="metric-head">QUALITY GATE <span class="mini-icon">◇</span></div><strong id="qualityState">Pending</strong><p>All checks must pass</p></article>
+    </section>
+    <section class="grid">
+      <article class="panel" id="runs"><div class="panel-title"><div><h2>Pipeline stages</h2><p>Typical CI workflow, from commit to verification</p></div><span class="badge">LOCAL DEMO</span></div>
+        <div class="stage-list">
+          <div class="stage"><div class="stage-icon">01</div><div class="stage-copy"><b>Compile & build</b><small>Maven compiles the application</small></div><span class="stage-state" id="s1">READY</span></div>
+          <div class="stage"><div class="stage-icon">02</div><div class="stage-copy"><b>Unit tests</b><small>JUnit 5 validates individual behavior</small></div><span class="stage-state" id="s2">READY</span></div>
+          <div class="stage"><div class="stage-icon">03</div><div class="stage-copy"><b>API integration tests</b><small>MockMvc exercises REST endpoints</small></div><span class="stage-state" id="s3">READY</span></div>
+          <div class="stage"><div class="stage-icon">04</div><div class="stage-copy"><b>Contract verification</b><small>Pact dependency included for contract tests</small></div><span class="stage-state" id="s4">PLANNED</span></div>
+        </div>
+        <div class="progress-track"><div id="progress"></div></div><div class="progress-caption"><span id="runMessage">Ready to begin</span><span id="progressText">0%</span></div>
+      </article>
+      <article class="panel" id="checks"><div class="panel-title"><div><h2>Quality checks</h2><p>What this experiment demonstrates</p></div></div>
+        <div class="check-row"><div class="check-symbol">✓</div><div><b>Unit testing</b><small>Isolated Java logic</small></div><span class="tag">JUnit 5</span></div>
+        <div class="check-row"><div class="check-symbol">✓</div><div><b>API testing</b><small>HTTP status and JSON response</small></div><span class="tag">MockMvc</span></div>
+        <div class="check-row"><div class="check-symbol">↔</div><div><b>Contract testing</b><small>Service agreement verification</small></div><span class="tag violet">Pact</span></div>
+        <div class="notice"><b>Note</b><p>The dashboard is a visual learning aid. Run <code>mvn test</code> in the terminal to execute real automated tests.</p></div>
+      </article>
+    </section>
+    <section class="panel task-panel"><div class="panel-title"><div><h2>CI task board</h2><p>Create sample tasks to explore the REST API</p></div><button id="refreshBtn" class="secondary">↻ Refresh</button></div>
+      <form id="taskForm"><input id="taskTitle" placeholder="e.g. Verify checkout endpoint" required maxlength="100"><button class="primary" type="submit">+ Add task</button></form>
+      <div class="table-head"><span>TASK</span><span>ID</span><span>STATUS</span></div><div id="taskList" class="task-list"><div class="empty">Loading tasks…</div></div>
+    </section>
+    <footer>SHIPSHAPE LAB <span>·</span> EXPERIMENT 9.1 <span>·</span> CI / TEST AUTOMATION</footer>
+  </main>
+</div><script src="/app.js"></script>
+</body></html>

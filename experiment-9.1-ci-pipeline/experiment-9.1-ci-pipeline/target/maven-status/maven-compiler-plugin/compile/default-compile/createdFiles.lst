@@ -1,0 +1,4 @@
+com\experiment\ci\CiPipelineApplication.class
+com\experiment\ci\TaskController$Task.class
+com\experiment\ci\TaskController$CreateTaskRequest.class
+com\experiment\ci\TaskController.class

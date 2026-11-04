@@ -1,0 +1,8 @@
+com\example\kafkareliability\model\PostEvent.class
+com\example\kafkareliability\KafkaReliabilityApplication.class
+com\example\kafkareliability\service\IdempotencyService.class
+com\example\kafkareliability\service\ActivityLog.class
+com\example\kafkareliability\service\PostEventProducer.class
+com\example\kafkareliability\service\ActivityLog$Item.class
+com\example\kafkareliability\controller\EventController.class
+com\example\kafkareliability\service\PostEventConsumer.class

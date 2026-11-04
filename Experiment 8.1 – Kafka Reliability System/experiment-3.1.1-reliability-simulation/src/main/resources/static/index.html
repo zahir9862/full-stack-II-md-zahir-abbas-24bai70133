@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Reliability Lab | Experiment 3.1.1</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-mark">R<span>↗</span></div><div><b>Reliability Lab</b><small>EXPERIMENT 03.1.1</small></div></div>
+    <div class="nav-label">WORKSPACE</div>
+    <div class="nav-item active"><span class="nav-icon">▦</span> Overview <span class="nav-dot"></span></div>
+    <div class="nav-item"><span class="nav-icon">⇄</span> Event processor</div>
+    <div class="nav-item"><span class="nav-icon">↻</span> Retry strategy</div>
+    <div class="nav-item"><span class="nav-icon">▤</span> Dead-letter queue</div>
+    <div class="sidebar-bottom"><div class="status-orb"></div><div><b>Simulation mode</b><small>Local in-memory queue</small></div><span class="live-pill">LIVE</span></div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><div class="breadcrumb">Workspace <span>/</span> <b>Overview</b></div><div class="top-actions"><span class="local-tag"><i></i> LOCAL ENVIRONMENT</span><div class="avatar">RL</div></div></header>
+    <section class="welcome"><div><div class="kicker"><span class="kicker-line"></span> DISTRIBUTED SYSTEMS LAB</div><h1>Reliable events.<br><em>Resilient systems.</em></h1><p>Explore how event-driven applications recover from failure with retries, dead-letter queues, and idempotent processing.</p><div class="tag-row"><span>SPRING BOOT</span><span>EXPONENTIAL BACKOFF</span><span>IDEMPOTENCY</span></div></div><div class="hero-visual"><div class="visual-grid"></div><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="node node-api"><small>01 / SOURCE</small><b>API</b></div><div class="node node-worker"><small>02 / PROCESSOR</small><b>Worker</b></div><div class="node node-dlq"><small>03 / FALLBACK</small><b>DLQ</b></div><div class="connector c1"></div><div class="connector c2"></div><div class="visual-caption"><span class="pulse"></span> EVENT FLOW SIMULATOR</div></div></section>
+    <section class="section-heading"><div><span class="section-index">01</span><h2>System overview</h2></div><span class="updated"><i></i> SESSION METRICS</span></section>
+    <section class="metrics">
+      <article class="metric-card"><div class="metric-top"><span class="metric-icon green">✓</span><span class="metric-label">UNIQUE EVENTS</span><span class="metric-trend">SESSION</span></div><h3 id="count">0</h3><p>Unique event IDs processed</p><div class="mini-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></article>
+      <article class="metric-card"><div class="metric-top"><span class="metric-icon purple">↻</span><span class="metric-label">RETRY POLICY</span><span class="metric-trend">4 ATTEMPTS</span></div><h3 class="delay-value">1s <b>→</b> 2s <b>→</b> 4s</h3><p>Progressive exponential backoff</p><div class="retry-steps"><span>01</span><span>02</span><span>03</span><span>04</span></div></article>
+      <article class="metric-card"><div class="metric-top"><span class="metric-icon orange">!</span><span class="metric-label">DEAD-LETTER QUEUE</span><span class="metric-trend warning">FALLBACK</span></div><h3 class="dlq-value">DLQ <small>ENABLED</small></h3><p>Failed events after all retries</p><div class="queue-line"><i></i><i></i><i></i><i></i><i></i><span>failure route</span></div></article>
+    </section>
+    <section class="section-heading tools-heading"><div><span class="section-index">02</span><h2>Event workbench</h2></div><span class="muted-label">PUBLISH · TEST · OBSERVE</span></section>
+    <section class="workbench">
+      <article class="panel composer"><div class="panel-heading"><div class="panel-symbol">↗</div><div><h3>Publish an event</h3><p>Create a test event and observe its journey.</p></div></div>
+        <form id="form"><label for="eventId">EVENT IDENTIFIER</label><div class="input-with-action"><input id="eventId" required autocomplete="off"><button type="button" id="newId" class="icon-button" title="Generate new ID">⟳</button></div><label for="postText">PAYLOAD / POST TEXT</label><textarea id="postText" rows="4" required placeholder="Write a message for the event payload…"></textarea>
+        <label class="failure-option" for="failure"><span class="toggle-wrap"><input type="checkbox" id="failure"><span class="toggle"></span></span><span><b>Simulate processing failure</b><small>Force retries and route the event to the DLQ.</small></span><span class="test-badge">TEST MODE</span></label>
+        <button class="publish-button" type="submit"><span>Publish event</span><span>↗</span></button></form>
+        <div class="demo-actions"><button type="button" class="demo-btn" id="successDemo"><span class="demo-dot success-dot"></span> Load success demo</button><button type="button" class="demo-btn" id="failDemo"><span class="demo-dot fail-dot"></span> Load failure demo</button></div>
+        <div class="response-wrap"><div class="response-title"><span>API RESPONSE</span><span class="response-indicator"></span></div><pre id="response">Your event response will appear here.</pre></div>
+      </article>
+      <article class="panel timeline-panel"><div class="panel-heading timeline-head"><div><div class="panel-symbol purple-symbol">≋</div></div><div class="timeline-title"><h3>Processing activity</h3><p>Recent event lifecycle and status changes.</p></div><button type="button" class="refresh-button" id="refresh">↻ <span>Refresh</span></button></div>
+        <div class="timeline-legend"><span><i class="legend-green"></i> Success</span><span><i class="legend-yellow"></i> Retry</span><span><i class="legend-red"></i> DLQ / Duplicate</span></div><div id="activity" class="activity"><div class="empty-state"><div class="empty-icon">↯</div><b>No activity yet</b><p>Publish an event to see its processing timeline here.</p></div></div><div class="timeline-footer"><span><i class="pulse"></i> AUTO-REFRESH EVERY 4 SECONDS</span><span>IN-MEMORY LOG</span></div>
+      </article>
+    </section>
+    <section class="concepts"><div class="concept-intro"><span class="section-index">03</span><div><h2>Reliability principles</h2><p>The three patterns behind resilient event processing.</p></div></div><div class="concept-grid"><article><div class="concept-icon green">↻</div><h3>Retry with backoff</h3><p>Temporarily failed events are attempted again, with longer waits between attempts to reduce repeated pressure.</p><span class="concept-number">PATTERN 01</span></article><article><div class="concept-icon orange">⇥</div><h3>Dead-letter queue</h3><p>Events that fail every attempt are isolated so they can be inspected without blocking other work.</p><span class="concept-number">PATTERN 02</span></article><article><div class="concept-icon purple">◎</div><h3>Idempotency</h3><p>Repeated event identifiers are detected so the same event isn't processed as a new event again.</p><span class="concept-number">PATTERN 03</span></article></div></section>
+    <footer><span>RELIABILITY LAB <b>·</b> EXPERIMENT 3.1.1</span><span>Educational simulation · Kafka is not connected</span></footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
